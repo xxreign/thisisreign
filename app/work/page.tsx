@@ -1,12 +1,28 @@
+import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { anton } from "../_lib/fonts";
-import styles from "../interior.module.css";
+import WorkGrid from "./WorkGrid";
+import styles from "./work.module.css";
 
-// Temporary placeholder so the homepage navigation works.
-// Replace this with your full WORK page when ready.
-export default function WORKPage() {
+export const metadata: Metadata = {
+  title: "Work | XXREIGN",
+  description: "Selected work by Reign across architecture, fashion, art and music.",
+};
+
+export default function WorkPage() {
   return (
     <main className={styles.page}>
-      <h1 className={`${styles.heading} ${anton.className}`}><span className="hero-word">WORK</span></h1>
+      <header className={styles.hero}>
+        <h1 className={`${styles.heading} ${anton.className}`}>
+          <span className={styles.intro}>
+            <span className="hero-word" style={{ "--i": 0 } as CSSProperties}>WORK</span>{" "}
+            <span className="hero-word" style={{ "--i": 1 } as CSSProperties}>BY</span>
+          </span>{" "}
+          <span className={styles.name}><span className="hero-word" style={{ "--i": 2 } as CSSProperties}>REIGN</span></span>
+        </h1>
+      </header>
+      <WorkGrid />
+      <footer className={styles.footer}>© REIGN ZHOU 2026</footer>
     </main>
   );
 }
