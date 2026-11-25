@@ -1,0 +1,22 @@
+.page {
+  position: relative;
+  background: #000;
+  color: #f7f7f7;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+.heading {
+  position: absolute;
+  left: 4.4%;
+  right: 5.8%;
+  top: 48%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: clamp(78px, 11vw, 192px);
+  line-height: 1;
+  font-weight: 400;
+}
+@media(max-width: 760px) {
+  .heading { left: 6%; right: 6%; font-size: clamp(56px, 13vw, 96px); }
+}
