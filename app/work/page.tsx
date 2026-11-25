@@ -6,7 +6,7 @@ import styles from "./work.module.css";
 
 export const metadata: Metadata = {
   title: "Work | XXREIGN",
-  description: "Selected work by Reign across architecture, fashion, art and music.",
+  description: "Selected work by Reign across branding, architecture, graphic design and more.",
 };
 
 export default function WorkPage() {
