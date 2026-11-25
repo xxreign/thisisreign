@@ -8,14 +8,16 @@ export default function Home() {
     <main className={styles.homepage}>
       <div className={styles.composition}>
         <h1 className={`${styles.hero} ${anton.className}`} aria-label="THIS IS REIGN">
-          <span className={styles.intro}>
-            <span>THIS</span>
-            <span>IS</span>
+          <span className={`${styles.intro} drift`} style={{ "--d": "-14px" } as React.CSSProperties}>
+            <span className="hero-word" style={{ "--i": 0 } as React.CSSProperties}>THIS</span>
+            <span className="hero-word" style={{ "--i": 1 } as React.CSSProperties}>IS</span>
           </span>
-          <span className={styles.name}>REIGN</span>
+          <span className={`${styles.name} drift`} style={{ "--d": "14px" } as React.CSSProperties}>
+            <span className="hero-word" style={{ "--i": 2 } as React.CSSProperties}>REIGN</span>
+          </span>
         </h1>
         <FrostGlassImage
-          className={styles.portrait}
+          className={`${styles.portrait} drift`}
           src={portrait}
           alt="Reign seated in a mirrored elevator"
           sizes="(max-width: 760px) 64vw, 34vw"

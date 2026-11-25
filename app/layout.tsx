@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import GlobalHeader from "./_components/GlobalHeader";
+import MotionLayer from "./_components/MotionLayer";
 
 export const metadata: Metadata = {
   title: "XXREIGN | This is Reign",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body><GlobalHeader />{children}</body>
+      <body><GlobalHeader />{children}<MotionLayer /></body>
     </html>
   );
 }

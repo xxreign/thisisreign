@@ -117,3 +117,29 @@
   .row, .icon { transition: none; }
   .row:hover .icon, .row:focus-visible .icon { transform: none; }
 }
+
+/* Hover: white line sweeps along the row's top rule and the label nudges right. */
+.list li { position: relative; }
+.row { position: relative; }
+.row::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.row:hover::before, .row:focus-visible::before { transform: scaleX(1); transform-origin: left center; }
+.label, .account { transition: translate 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (hover: hover) {
+  .row:hover .label { translate: 14px 0; }
+  .row:hover .account { translate: -8px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .row::before, .label, .account { transition: none; }
+  .row:hover .label, .row:hover .account { translate: none; }
+}

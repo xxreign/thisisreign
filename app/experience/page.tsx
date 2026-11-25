@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function Entry({ entry }: { entry: ExperienceEntry }) {
   return (
-    <li className={styles.entry}>
+    <li className={styles.entry} data-reveal="">
       <div className={styles.entryMain}>
         <h3>{entry.href ? (
           <a className={styles.nameLink} href={entry.href} target="_blank" rel="noopener noreferrer">{entry.title}</a>
@@ -32,8 +32,8 @@ export default function ExperiencePage() {
       <ExperienceSectionNav />
       <header className={styles.hero}>
         <h1 className={`${styles.heading} ${anton.className}`}>
-          <span className={styles.intro}><span>EXPERIENCE</span>{" "}<span>FROM</span></span>{" "}
-          <span className={styles.name}>REIGN</span>
+          <span className={styles.intro}><span className="hero-word" style={{ "--i": 0 } as React.CSSProperties}>EXPERIENCE</span>{" "}<span className="hero-word" style={{ "--i": 1 } as React.CSSProperties}>FROM</span></span>{" "}
+          <span className={styles.name}><span className="hero-word" style={{ "--i": 2 } as React.CSSProperties}>REIGN</span></span>
         </h1>
       </header>
       <div className={styles.sections}>
@@ -43,16 +43,16 @@ export default function ExperiencePage() {
           { id: "awards", title: "AWARDS", entries: awards },
         ].map(({ id, title, entries }) => (
           <section className={styles.section} id={id} key={id} aria-labelledby={`${id}-heading`}>
-            <h2 id={`${id}-heading`} className={anton.className}>{title}</h2>
+            <h2 id={`${id}-heading`} className={anton.className} data-reveal="">{title}</h2>
             <ul className={styles.entries}>{entries.map((entry) => <Entry key={entry.title} entry={entry} />)}</ul>
           </section>
         ))}
         <section className={`${styles.section} ${styles.content}`} id="content" aria-labelledby="content-heading">
-          <h2 id="content-heading" className={anton.className}>CONTENT</h2>
-          <h3 className={styles.brandTitle}>COLLABORATION BRANDS FOR FASHION CONTENT</h3>
+          <h2 id="content-heading" className={anton.className} data-reveal="">CONTENT</h2>
+          <h3 className={styles.brandTitle} data-reveal="">COLLABORATION BRANDS FOR FASHION CONTENT</h3>
           <ul className={styles.brands}>
-            {brands.map(({ name, src, width, height = 320, href }) => (
-              <li key={name}>
+            {brands.map(({ name, src, width, height = 320, href }, index) => (
+              <li key={name} data-reveal="" style={{ "--i": index % 3 } as React.CSSProperties}>
                 {href ? (
                   <a className={styles.logoLink} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${name} on Instagram (opens in a new tab)`}>
                     <Image src={src} width={width} height={height} sizes="(max-width: 760px) 40vw, 20vw" alt={`${name} logo`} className={styles.logo} />

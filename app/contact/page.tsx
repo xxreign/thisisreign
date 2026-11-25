@@ -29,16 +29,16 @@ export default function ContactPage() {
     <main className={styles.page}>
       <header className={styles.hero}>
         <h1 className={`${styles.heading} ${anton.className}`}>
-          <span className={styles.intro}><span>CONTACT</span>{" "}<span>WITH</span></span>{" "}
-          <span className={styles.name}>REIGN</span>
+          <span className={styles.intro}><span className="hero-word" style={{ "--i": 0 } as React.CSSProperties}>CONTACT</span>{" "}<span className="hero-word" style={{ "--i": 1 } as React.CSSProperties}>WITH</span></span>{" "}
+          <span className={styles.name}><span className="hero-word" style={{ "--i": 2 } as React.CSSProperties}>REIGN</span></span>
         </h1>
       </header>
       <section className={styles.contacts} aria-label="Contact details">
         <ul className={styles.list}>
-          {contacts.map(({ label, account, href }) => {
+          {contacts.map(({ label, account, href }, index) => {
             const external = href.startsWith("https:");
             return (
-              <li key={href}>
+              <li key={href} data-reveal="" style={{ "--i": index } as React.CSSProperties}>
                 <a className={styles.row} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
                   <span className={styles.label}>{label}{external && <ExternalLinkIcon />}</span>
                   <span className={styles.account}>{account}</span>

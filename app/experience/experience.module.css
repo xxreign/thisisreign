@@ -127,3 +127,32 @@
 @media (prefers-reduced-motion: reduce) {
   .nameLink, .logoLink { transition: none; }
 }
+
+/* Hover: a white line sweeps across the entry's top rule and the text lifts to full white. */
+.entry { position: relative; }
+.entry::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.entry:hover::before { transform: scaleX(1); transform-origin: left center; }
+.entry .description { transition: color 300ms ease-out; }
+.entry:hover .description { color: #fff; }
+.entryMain { transition: translate 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (hover: hover) {
+  .entry:hover .entryMain { translate: 10px 0; }
+}
+.brandTitle { position: relative; }
+.logoLink:hover .logo, .logoLink:focus-visible .logo { transform: translateY(-4px); }
+.logo { transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .entry::before, .entry .description, .entryMain, .logo { transition: none; }
+  .entry:hover .entryMain { translate: none; }
+}

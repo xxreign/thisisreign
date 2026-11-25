@@ -6,7 +6,7 @@ import styles from "../interior.module.css";
 export default function WORKPage() {
   return (
     <main className={styles.page}>
-      <h1 className={`${styles.heading} ${anton.className}`}>WORK</h1>
+      <h1 className={`${styles.heading} ${anton.className}`}><span className="hero-word">WORK</span></h1>
     </main>
   );
 }
