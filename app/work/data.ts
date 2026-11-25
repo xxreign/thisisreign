@@ -1,5 +1,7 @@
 // Your projects for the WORK page.
 // To add images: put files in /public/work/ and set `image: "/work/your-file.jpg"`.
+// For animation or video: set `video: "/work/your-file.mp4"` (it plays silently on a loop).
+//   Keep `image` too if you like: it shows while the video loads.
 // Until a project has an image, a grey placeholder tile is shown in its place.
 //
 // Layout (desktop, 12-column scattered grid):
@@ -18,6 +20,7 @@ export type Project = {
   category: Category;
   year: string;
   image?: string;
+  video?: string;
   col: number;
   span: number;
   shift: number;

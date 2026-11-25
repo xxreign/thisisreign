@@ -39,7 +39,9 @@ export default function WorkGrid() {
             <li key={project.slug} className={styles.item} style={place} data-active={active ? "" : undefined} data-reveal="">
               <figure className={`${styles.tile} drift`} data-cursor="view" aria-label={`${project.title}, ${project.category}, ${project.year}`}>
                 <div className={styles.media}>
-                  {project.image ? (
+                  {project.video ? (
+                    <video className={styles.image} src={project.video} poster={project.image} autoPlay muted loop playsInline preload="metadata" aria-label={project.title} />
+                  ) : project.image ? (
                     <Image src={project.image} alt={project.title} fill sizes="(max-width: 760px) 50vw, 35vw" className={styles.image} />
                   ) : (
                     <div className={styles.placeholder} aria-hidden="true">
