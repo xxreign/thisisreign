@@ -45,7 +45,7 @@ export default function AlphabetCollectionPage() {
 
         <nav className={styles.pager} aria-label="Project navigation">
           <Link href="/work">← WORK</Link>
-          <Link href="/work/dusk-til-dawn">NEXT PROJECT →</Link>
+          <Link href="/work/but-i-am-so-blue">NEXT PROJECT →</Link>
         </nav>
       </div>
 

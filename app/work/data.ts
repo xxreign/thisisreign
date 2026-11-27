@@ -9,7 +9,7 @@
 // Layout: a regular grid of equal 16:9 tiles (4 per row on desktop, 3 on tablets, 2 on phones),
 // in the order listed below. Each tile shows its number, title and label over the image on hover.
 
-export const categories = ["BRANDING", "ARCHITECTURE", "GRAPHIC DESIGN", "FILM", "OTHER"] as const;
+export const categories = ["BRANDING", "ARCHITECTURE", "GRAPHIC DESIGN", "MOTION DESIGN", "FILM", "OTHER"] as const;
 export type Category = (typeof categories)[number];
 
 export type Project = {
@@ -34,4 +34,5 @@ export const projects: Project[] = [
   { slug: "partial-wholes", title: "PARTIAL WHOLES", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2026", image: "/work/partial-wholes/p01.jpg", objectPosition: "50% 80%", url: "/work/partial-wholes" },
   { slug: "apartment-design", title: "APARTMENT DESIGN", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2023", image: "/work/apartment-design/street-view-1.jpg", url: "/work/apartment-design" },
   { slug: "alphabet-collection", title: "ALPHABET COLLECTION", category: "GRAPHIC DESIGN", label: "GRAPHIC DESIGN, EXPERIMENTAL", year: "2026", image: "/work/alphabet-collection/preview.jpg", url: "/work/alphabet-collection" },
+  { slug: "but-i-am-so-blue", title: "BUT I AM SO BLUE", category: "MOTION DESIGN", label: "MOTION DESIGN", year: "2025", image: "/work/but-i-am-so-blue/cover.jpg", url: "/work/but-i-am-so-blue" },
 ];
