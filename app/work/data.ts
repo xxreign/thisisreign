@@ -20,6 +20,8 @@ export type Project = {
   label?: string;
   year: string;
   image?: string;
+  /** Optional crop position for the tile preview (CSS object-position), e.g. "50% 80%" to show more of the bottom. */
+  objectPosition?: string;
   video?: string;
   url?: string;
 };
@@ -29,7 +31,7 @@ export const projects: Project[] = [
   { slug: "soft-and-hard", title: "SOFT AND HARD", category: "GRAPHIC DESIGN", label: "TYPEFACE DESIGN", year: "2026", image: "/work/soft-and-hard/posters.jpg", url: "/work/soft-and-hard" },
   { slug: "glitch-technology-festival", title: "GLITCH TECHNOLOGY FESTIVAL", category: "BRANDING", label: "VISUAL DIRECTION, BRANDING, PRODUCT DESIGN", year: "2026", image: "/work/glitch/p03-preview.jpg", url: "/work/glitch-technology-festival" },
   { slug: "produce-r", title: "PRODUCE.R", category: "BRANDING", label: "CREATIVE DIRECTION, BRANDING, CAMPAIGN, PRODUCT DESIGN", year: "2024–NOW", image: "/work/produce-r/preview.jpg", url: "/work/produce-r" },
-  { slug: "partial-wholes", title: "PARTIAL WHOLES", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2026", image: "/work/partial-wholes/p01.jpg", url: "/work/partial-wholes" },
+  { slug: "partial-wholes", title: "PARTIAL WHOLES", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2026", image: "/work/partial-wholes/p01.jpg", objectPosition: "50% 80%", url: "/work/partial-wholes" },
   { slug: "blue-in-stockholm", title: "BLUE IN STOCKHOLM", category: "FILM", label: "FILM, EDITING", year: "2026", image: "/work/blue-in-stockholm/preview.jpg", url: "/work/blue-in-stockholm" },
   { slug: "see-u-in-paris", title: "SEE U IN PARIS", category: "FILM", label: "FILM, EDITING", year: "2025", image: "/work/see-u-in-paris/preview.jpg", url: "/work/see-u-in-paris" },
 ];

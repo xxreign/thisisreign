@@ -46,7 +46,7 @@ export default function WorkGrid() {
                 {project.video ? (
                   <video className={styles.image} src={project.video} poster={project.image} autoPlay muted loop playsInline preload="metadata" aria-label={project.title} />
                 ) : project.image ? (
-                  <Image src={project.image} alt={project.title} fill sizes="(max-width: 760px) 46vw, (max-width: 1100px) 30vw, 23vw" className={styles.image} />
+                  <Image src={project.image} alt={project.title} fill sizes="(max-width: 760px) 46vw, (max-width: 1100px) 30vw, 23vw" className={styles.image} style={project.objectPosition ? { objectPosition: project.objectPosition } : undefined} />
                 ) : (
                   <div className={styles.placeholder} aria-hidden="true" />
                 )}
