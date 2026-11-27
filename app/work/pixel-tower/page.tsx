@@ -124,7 +124,7 @@ export default function PixelTowerPage() {
 
         <nav className={styles.pager} aria-label="Project navigation">
           <Link href="/work">← WORK</Link>
-          <Link href="/work/dusk-til-dawn">NEXT PROJECT →</Link>
+          <Link href="/work/catskill-museum">NEXT PROJECT →</Link>
         </nav>
       </div>
 
