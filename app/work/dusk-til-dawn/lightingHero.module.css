@@ -1,0 +1,141 @@
+/* Hero recreated from the live Dusk ‘til Dawn site. Desktop positions use the site's own unit:
+   1u = 1/1728 of the viewport width (its Figma frame), so everything scales exactly like the original. */
+
+@font-face { font-family: "DTD Montreal"; src: url("/work/dusk-til-dawn/live/fonts/PPNeueMontreal-Regular.otf") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "DTD Montreal"; src: url("/work/dusk-til-dawn/live/fonts/PPNeueMontreal-Semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "DTD Editorial"; src: url("/work/dusk-til-dawn/live/fonts/PPEditorialNew-Ultrabold.otf") format("opentype"); font-weight: 800; font-display: swap; }
+
+.hero {
+  --u: calc(100vw / 1728);
+  position: relative;
+  height: max(100vh, calc(var(--u) * 1060));
+  height: max(100svh, calc(var(--u) * 1060));
+  overflow: clip;
+  background: #000;
+  color: #fff;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The 16:9 render frame (1728 x 972u), and the lighting stage inside it at 80% like the original. */
+.frame {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--u) * 135);
+  width: calc(var(--u) * 1728);
+  height: calc(var(--u) * 972);
+  transform: translateX(-50%);
+}
+.stage {
+  position: absolute;
+  inset: 0;
+  transform: scale(0.8);
+  transform-origin: 50%;
+  isolation: isolate;
+  pointer-events: none;
+}
+.products { position: absolute; inset: 0; filter: brightness(0.55); }
+.logo {
+  position: absolute;
+  left: -6%;
+  top: 50%;
+  width: 112%;
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
+}
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+/* Videos stay hidden until a real frame is ready, so the neutral still never flashes. */
+.video { opacity: 0; }
+.video[data-ready="true"] { opacity: 1; }
+.logoVideo {
+  -webkit-mask-image: url("/work/dusk-til-dawn/live/dusk-logo-mask.png");
+  mask-image: url("/work/dusk-til-dawn/live/dusk-logo-mask.png");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-mode: alpha;
+}
+
+/* Tagline and MORE cue. */
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--u) * 965);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tagline {
+  margin: 0;
+  height: calc(var(--u) * 24);
+  overflow: hidden;
+  font-family: "DTD Montreal", "Helvetica Neue", Arial, sans-serif;
+  font-size: calc(var(--u) * 20);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.tagline strong { display: block; font-weight: 600; white-space: nowrap; }
+.red { color: red; }
+/* The bold line rolls up once to reveal the red line beneath it. */
+.roll { display: inline-block; height: 1.2em; overflow: hidden; vertical-align: top; }
+.rollInner { display: flex; flex-direction: column; transition: transform 500ms ease-in-out; }
+.roll[data-rolled] .rollInner { transform: translateY(-1.2em); }
+
+.more {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 3);
+  margin-top: calc(var(--u) * 16);
+  color: #b2b2b2;
+  font-family: "DTD Editorial", Georgia, "Times New Roman", serif;
+  font-weight: 800;
+  font-size: calc(var(--u) * 20);
+  line-height: 1.3;
+  text-decoration: none;
+  transition: color 300ms ease-in-out;
+}
+.more img { width: calc(var(--u) * 25); height: auto; transition: transform 300ms ease-in-out; }
+.more:is(:hover, :focus-visible) { color: red; }
+.more:is(:hover, :focus-visible) img { transform: translateY(5px); }
+.more:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+
+/* Phones and narrow windows: the original's mobile layout (stage above, caption at the bottom). */
+@media (max-width: 899px) {
+  .hero { --u: 1px; height: 100vh; height: 100svh; min-height: 570px; }
+  .frame { left: 0; right: 0; top: 80px; bottom: 140px; width: auto; height: auto; transform: none; }
+  .caption { top: auto; bottom: 36px; left: 24px; right: 24px; }
+  .tagline { height: auto; max-width: 390px; margin: 0 auto 18px; font-size: 14px; line-height: 1.4; white-space: normal; }
+  .tagline strong { display: inline; }
+  .roll { display: inline; height: auto; overflow: visible; }
+  .rollInner { display: inline; transform: none !important; }
+  .red { display: none !important; }
+  .more { gap: 8px; margin-top: 0; font-size: 16px; }
+  .more img { width: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video { display: none; }
+  .rollInner, .more, .more img { transition: none; }
+}

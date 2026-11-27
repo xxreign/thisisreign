@@ -1,0 +1,255 @@
+.page {
+  position: relative;
+  background: #000;
+  color: #fff;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+/* Shared by the project pages under /work (Dusk ‘til Dawn, Soft and Hard). */
+
+/* Plain full-screen hero for pages that use the shared hero word (app/interior.module.css). */
+.hero { position: relative; min-height: 100vh; min-height: 100svh; }
+/* A lettering image in place of the hero word: spans the headline's full width. */
+.lettering { line-height: 0; }
+.lettering img { display: block; width: 100%; height: auto; }
+
+/* Same edges as the headline (left 4.4%, right 5.8%). */
+.content { margin-inline: 4.4% 5.8%; scroll-margin-top: 120px; }
+
+.label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  color: #8a8a8a;
+}
+
+/* Meta row: label / value pairs side by side under a hairline. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px clamp(48px, 8vw, 160px);
+  margin: clamp(28px, 4vw, 72px) 0 clamp(28px, 3vw, 52px);
+  padding-top: 18px;
+  border-top: 1px solid #454545;
+}
+.meta div { min-width: 0; }
+/* Three items (Dusk ‘til Dawn): equal columns, the last one on the right. */
+.metaThree { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2vw; }
+.metaThree > div:last-child { justify-self: end; text-align: right; }
+.metaLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms ease, opacity 200ms ease;
+}
+.metaLink:hover { text-decoration-color: #fff; }
+.metaLink:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.meta dd, .details dd {
+  margin: 10px 0 0;
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.45;
+  color: #fff;
+}
+
+/* Image boxes: fixed 16:9 crop, dark while loading. */
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.image { object-fit: cover; }
+
+/* Section rows: a hairline, then the title. */
+.section { margin-top: clamp(120px, 14vw, 260px); }
+.sectionHeader {
+  padding-top: 18px;
+  margin-bottom: clamp(32px, 4vw, 72px);
+  border-top: 1px solid #454545;
+}
+.sectionHeader h2 { margin: 0; font-size: clamp(34px, 3.6vw, 64px); line-height: 1.05; font-weight: 400; }
+
+/* About the brand: the brand text on the left, the audience beside it. */
+.brand {
+  display: grid;
+  grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+  column-gap: 6vw;
+  align-items: start;
+}
+.copy {
+  display: grid;
+  gap: 1.2em;
+  max-width: 60ch;
+  font-size: clamp(17px, 1.45vw, 24px);
+  line-height: 1.6;
+  color: #d0d0d0;
+}
+.copy p { margin: 0; }
+.details {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid #454545;
+}
+.details dd { max-width: 60ch; }
+
+/* Sub-blocks (typography, palette): small label, then whole images. */
+.subBlock { display: grid; gap: clamp(16px, 1.6vw, 28px); margin-top: clamp(56px, 6vw, 110px); }
+.whole { display: block; width: 100%; height: auto; }
+
+/* 02 Product: image and text side by side, alternating. */
+.products { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(48px, 6vw, 110px); }
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  column-gap: 4vw;
+  align-items: center;
+}
+.product:nth-child(even) .media { order: 2; }
+.productText { display: grid; gap: 10px; max-width: 46ch; }
+.productName { margin: 0; font-size: clamp(22px, 2.2vw, 38px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+.productBody { margin: 8px 0 0; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.65; color: #b5b5b5; }
+
+/* Video hero (Glitch): full-width 16:9 film directly under the fixed nav. */
+.videoHero {
+  padding-top: calc(clamp(29px, 4.3vh, 58px) + clamp(14px, 1.53vw, 28px) + 40px);
+}
+.videoWrap { position: relative; width: 100%; background: #0a0a0a; }
+.video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.soundToggle {
+  position: absolute;
+  right: clamp(12px, 1.6vw, 28px);
+  bottom: clamp(12px, 1.6vw, 28px);
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.soundToggle:hover { background: rgba(0, 0, 0, 0.8); border-color: #fff; }
+.soundToggle:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+
+/* A row of tall photos (PRODUCE.R studio): width capped so the row stays within ~85% of the screen height. */
+.studioRow {
+  max-width: calc(85svh * var(--row-ratio) + clamp(10px, 1.2vw, 20px));
+  margin: clamp(32px, 4vw, 72px) auto 0;
+}
+
+/* About the project (Glitch): text and an image under it on the left, a second image on the right. */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+.aboutLeft { display: grid; gap: clamp(32px, 3.5vw, 64px); }
+.lead {
+  margin: 0 0 1em;
+  font-size: clamp(20px, 1.9vw, 32px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* Rows of whole images at one shared height (flex-grow = each image's width/height ratio). */
+.row { display: flex; align-items: flex-start; gap: clamp(10px, 1.2vw, 20px); }
+.rowItem { flex: var(--ratio) 1 0; min-width: 0; margin: 0; }
+
+/* Small muted captions under images, and a subtitle line under a section title. */
+.caption {
+  margin: 10px 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: #8a8a8a;
+}
+.subtitle {
+  margin: calc(-1 * clamp(16px, 2vw, 40px)) 0 clamp(24px, 3vw, 52px);
+  font-size: clamp(15px, 1.2vw, 19px);
+  color: #b5b5b5;
+}
+
+/* Text on the left, a row of images on the right (Partial Wholes, Visual continuity). */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  column-gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+.credits { margin: 0; display: grid; gap: 6px; font-size: clamp(14px, 1.05vw, 17px); line-height: 1.5; color: #d0d0d0; }
+.credits p { margin: 0; }
+
+/* Four diagrams in one row on desktop; two by two on narrower screens. */
+@media (max-width: 1100px) {
+  .wrapTwo { flex-wrap: wrap; }
+  .wrapTwo > .rowItem { flex: 0 0 calc(50% - clamp(10px, 1.2vw, 20px) / 2); }
+}
+.stack { display: grid; gap: clamp(20px, 2.4vw, 44px); }
+
+/* Back / next row */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(48px, 6vw, 110px);
+  padding-top: 18px;
+  border-top: 1px solid #454545;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(12px, 0.95vw, 15px);
+  letter-spacing: 0.08em;
+}
+.pager a { color: #a3a3a3; text-decoration: none; transition: color 180ms ease; }
+.pager a:hover { color: #fff; }
+.pager a:focus-visible { color: #fff; outline: 1px solid #fff; outline-offset: 3px; }
+
+.footer { padding: 8vw 2% 4vw; text-align: right; font-size: clamp(10px, .8vw, 14px); color: #ccc; }
+
+@media (max-width: 760px) {
+  .content { margin-inline: 6%; }
+  .meta { column-gap: 48px; margin-top: 32px; }
+  /* Phones: Discipline and Year side by side, Website on its own line below. */
+  .metaThree { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; row-gap: 24px; }
+  .metaThree > div:last-child { grid-column: 1 / -1; justify-self: start; text-align: left; }
+  .section { margin-top: 110px; }
+  .sectionHeader { margin-bottom: 28px; }
+  .brand { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .copy { font-size: 17px; }
+  /* Rows that stack on phones, and the invitation row as a 2x2 grid. */
+  .stackOnPhone { flex-direction: column; }
+  .stackOnPhone .rowItem { flex: none; width: 100%; }
+  .gridOnPhone { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: center; }
+  .aboutGrid { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .videoHero { padding-top: 84px; }
+  .studioRow { max-width: none; margin-top: 24px; }
+  .split { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .wrapTwo { flex-direction: row; }
+  /* The tiny Prod. logo (154 px wide) stays under about 2x when the logo row stacks. */
+  .logoRow > .rowItem:first-child { max-width: 300px; }
+  .product { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+  .product:nth-child(even) .media { order: 0; }
+  .pager { margin-top: 56px; }
+  .footer { padding: 64px 6% 32px; }
+}

@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tooling
+.claude/
+.claude-screenshots/
+
+# font files held back until the licence is confirmed
+public/work/dusk-til-dawn/live/fonts/

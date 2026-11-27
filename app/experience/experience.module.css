@@ -1,6 +1,7 @@
 .page {
-  --section-nav-top: clamp(90px, 12vh, 120px);
-  --anchor-offset: 110px;
+  /* Height of the fixed global header (mirrors Navigation.module.css). */
+  --header-h: calc(clamp(29px, 4.3vh, 58px) + clamp(14px, 1.53vw, 28px) + 22px);
+  --anchor-offset: calc(var(--header-h) + 64px);
   position: relative;
   background: #000;
   color: #fff;
@@ -9,97 +10,142 @@
 
 :global(html:has(.page)) { scroll-behavior: smooth; }
 
-.hero { min-height: 67vw; position: relative; }
-.heading {
-  position: absolute;
-  top: 31vw;
-  left: 4.5%;
-  right: 5.6%;
-  transform: translateY(-50%);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2vw;
-  font-size: clamp(48px, 8vw, 164px);
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.012em;
-}
-.intro { display: flex; gap: 4.5vw; }
-.name { margin-left: auto; }
+/* Full-screen box for the hero; the headline uses .heading from app/interior.module.css. */
+.hero { position: relative; min-height: 100svh; }
 
+/* Section index: a numbered row under the headline that stays under the header while scrolling. */
 .sectionNav {
-  position: fixed;
-  top: var(--section-nav-top);
-  left: 4.8%;
+  position: sticky;
+  top: var(--header-h);
   z-index: 20;
-  flex-direction: column;
-  display: flex;
-  gap: clamp(10px, 1.25vw, 22px);
-  max-width: 20%;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  font-size: clamp(12px, 1.5vw, 26px);
-  line-height: 1.4;
-  letter-spacing: -0.025em;
+  margin: clamp(28px, 4vw, 72px) 5.8% clamp(64px, 8vw, 150px) 4.4%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 2vw;
+  border-top: 1px solid #454545;
+  background: #000;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(11px, 0.85vw, 15px);
+  line-height: 1;
+  letter-spacing: 0.06em;
   color: #a3a3a3;
 }
-.sectionNav a { white-space: nowrap; text-decoration: none; border-bottom: 1px solid transparent; padding-block: 4px; transition: color 200ms ease-out; }
+.sectionNav a {
+  position: relative;
+  justify-self: start;
+  display: inline-flex;
+  gap: 0.9em;
+  padding-block: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.sectionNav a span { color: #5c5c5c; transition: color 180ms ease; }
+.sectionNav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 .sectionNav a:hover, .sectionNav a[aria-current] { color: #fff; }
-.sectionNav a[aria-current] { font-weight: 500; }
-.sectionNav a:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
-.sections { margin-inline: 28% 5.6%; }
+.sectionNav a:hover span, .sectionNav a[aria-current] span { color: #a3a3a3; }
+.sectionNav a:hover::after, .sectionNav a[aria-current]::after { transform: scaleX(1); transform-origin: left center; }
+.sectionNav a:focus-visible { color: #fff; outline: 1px solid #fff; outline-offset: 3px; }
+.sections { margin-inline: 4.4% 5.8%; }
 .section { scroll-margin-top: var(--anchor-offset); margin-bottom: 24vw; }
-.section h2 { font-size: clamp(30px, 4vw, 72px); line-height: 1.1; font-weight: 400; margin: 0 0 1.5vw; }
-.entries { margin: 0; padding: 0; list-style: none; }
-.entry { border-top: 1px solid #454545; display: grid; grid-template-columns: minmax(0, 1fr) 32%; column-gap: 2vw; row-gap: 0; padding-block: 1.5vw 2vw; }
-.entry h3, .role, .brandTitle { font-weight: 400; font-size: clamp(16px, 2vw, 30px); line-height: 1.22; letter-spacing: -0.035em; margin: 0; }
-.entry:not(:has(.details)) .entryMain { grid-column: 1 / -1; }
-.entry h3 { font-weight: 700; }
-.description { grid-column: 1 / -1; font-size: clamp(14px, 1.5vw, 23px); line-height: 1.28; color: #bbb; margin: 1vw 0 0; white-space: pre-line; letter-spacing: -0.025em; }
-.details { text-align: right; font-size: clamp(13px, 1.75vw, 26px); line-height: 1.25; letter-spacing: -0.035em; margin: 0; white-space: pre-wrap; }
-.details span { display: block; }
-.details span + span { white-space: normal; }
+.section h2 { font-size: clamp(34px, 3.6vw, 64px); line-height: 1.05; font-weight: 400; margin: 0 0 clamp(20px, 2vw, 36px); }
+
+/* Entries read as a table: index | title + secondary | detail | years. */
+/* One column template per section; the label row, the list and every row share it through subgrid,
+   so the detail and years columns line up from row to row. */
+.table {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 45fr) minmax(0, 38fr) minmax(min-content, 12fr);
+  column-gap: clamp(16px, 2vw, 36px);
+}
+.columnLabels, .entries, .entry { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
+.columnLabels, .index, .years, .brandTitle {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.columnLabels {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #454545;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  color: #8a8a8a;
+}
+.yearsLabel { text-align: right; }
+.entries { margin: 0; padding: 0; list-style: none; row-gap: 0; }
+.entry { position: relative; align-items: start; padding-block: 32px; border-bottom: 1px solid #454545; }
+.index { padding-top: 8px; font-size: 11px; letter-spacing: 0.08em; color: #7a7a7a; }
+.title {
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 30px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.secondary, .description, .location { margin: 0; font-size: clamp(15px, 1.18vw, 19px); line-height: 1.4; letter-spacing: -0.01em; }
+.secondary { margin-top: 6px; text-transform: uppercase; color: #9a9a9a; }
+.detail { display: grid; gap: 10px; }
+.description { color: #b5b5b5; white-space: pre-line; }
+.location { color: #7a7a7a; text-transform: uppercase; font-size: clamp(13px, 0.95vw, 15px); letter-spacing: 0.02em; }
+.years {
+  margin: 0;
+  padding-top: 8px;
+  grid-column: 4;
+  text-align: right;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: #fff;
+  white-space: nowrap;
+}
 .content { padding-bottom: 0; margin-bottom: 0; }
-.brandTitle { margin-top: 3vw; padding-bottom: 0.7vw; border-bottom: 1px solid #454545; }
+.brandTitle { margin: 0; padding-bottom: 14px; border-bottom: 1px solid #454545; font-size: 11px; line-height: 1.2; letter-spacing: 0.12em; color: #8a8a8a; }
 .brands { list-style: none; padding: 2.5vw 0 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 4vw; row-gap: 6vw; }
 .logo { display: block; width: auto; max-width: 100%; height: 6vw; object-fit: contain; object-position: left center; }
 .brands p { margin: 1.5vw 0 0; font-size: clamp(12px, 1.5vw, 22px); }
 
 .footer { padding: 8vw 2% 4vw; text-align: right; font-size: clamp(10px, .8vw, 14px); color: #ccc; }
 
-@media (min-width: 761px) and (max-width: 1100px) {
-  .hero { min-height: 80vw; }
-  .heading { top: 40vw; }
-}
 
 @media (max-width: 760px) {
-  .page { --section-nav-top: 85px; --anchor-offset: 150px; }
-  .sectionNav { left: 6%; right: 6%; max-width: none; flex-direction: row; gap: 22px; font-size: 12px; }
-  .hero { min-height: 90svh; }
-  .heading { top: 48%; left: 6%; right: 6%; flex-wrap: wrap; font-size: clamp(34px, 8.4vw, 64px); gap: 20px; }
-  .intro { gap: 4vw; }
-  .name { width: 100%; text-align: right; }
+  .page { --header-h: 74px; --anchor-offset: 170px; }
+  .sectionNav { margin: 32px 6% 72px; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; font-size: 11px; }
+  .sectionNav a { padding-block: 13px; }
+  .sectionNav a::after { bottom: 7px; }
   .sections { margin-inline: 6%; }
   .section { margin-bottom: 150px; }
   .section h2 { margin-bottom: 20px; }
-  .entry { padding-block: 20px 26px; grid-template-columns: minmax(0, 1fr) 30%; gap: 20px; }
-  .description { margin-top: 12px; }
-  .brandTitle { margin-top: 28px; padding-bottom: 12px; }
+  /* Index | title + secondary | years on top, detail underneath. */
+  .table { grid-template-columns: 28px minmax(0, 1fr) auto; column-gap: 12px; }
+  .detailLabel { display: none; }
+  .yearsLabel { grid-column: 3; }
+  .entry { padding-block: 24px; row-gap: 14px; }
+  .index, .years { padding-top: 5px; }
+  .years { grid-column: 3; grid-row: 1; white-space: normal; max-width: 9.5em; }
+  .detail { grid-column: 2 / -1; grid-row: 2; }
+  .title { font-size: 20px; }
+  .secondary, .description { font-size: 15px; }
   .brands { padding-top: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
   .logo { height: 55px; }
   .brands p { margin-top: 14px; }
   .content { margin-bottom: 0; padding-bottom: 40px; }
 }
-@media (max-width: 520px) {
-  .entry { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .details { text-align: left; color: #bbb; }
-  .description { grid-column: 1; }
-}
 @media (prefers-reduced-motion: reduce) {
   :global(html:has(.page)) { scroll-behavior: auto; }
-  .sectionNav a { transition: none; }
+  .sectionNav a, .sectionNav a span, .sectionNav a::after { transition: none; }
 }
 
 .nameLink {
@@ -126,4 +172,32 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .nameLink, .logoLink { transition: none; }
+}
+
+/* Hover: a white line sweeps across the entry's top rule and the text lifts to full white. */
+.entry::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.entry:hover::before { transform: scaleX(1); transform-origin: left center; }
+.entry .description { transition: color 300ms ease-out; }
+.entry:hover .description { color: #e5e5e5; }
+.entryMain { transition: translate 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (hover: hover) {
+  .entry:hover .entryMain { translate: 10px 0; }
+}
+.brandTitle { position: relative; }
+.logoLink:hover .logo, .logoLink:focus-visible .logo { transform: translateY(-4px); }
+.logo { transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .entry::before, .entry .description, .entryMain, .logo { transition: none; }
+  .entry:hover .entryMain { translate: none; }
 }

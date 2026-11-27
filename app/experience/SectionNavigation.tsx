@@ -13,7 +13,7 @@ export default function ExperienceSectionNav() {
     let settleTimer: ReturnType<typeof setTimeout>;
     const update = () => {
       frame = 0;
-      const offset = window.innerWidth <= 760 ? 150 : 110;
+      const offset = parseFloat(getComputedStyle(document.getElementById(sectionLinks[0].id) ?? document.body).scrollMarginTop) || 0;
       const target = pending.current;
       if (target) {
         const element = document.getElementById(target.id);
@@ -59,14 +59,14 @@ export default function ExperienceSectionNav() {
   }, []);
 
   return (
-    <nav className={styles.sectionNav} aria-label="Experience sections">
-      {sectionLinks.map(({ id, label }) => (
+    <nav className={styles.sectionNav} aria-label="Experience sections" data-reveal="" suppressHydrationWarning>
+      {sectionLinks.map(({ id, label }, index) => (
         <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}
           onClick={(event) => {
             if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
             pending.current = { id, until: performance.now() + 1400 };
             setActive(id);
-          }}>{label}</a>
+          }}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{label}</a>
       ))}
     </nav>
   );

@@ -1,0 +1,140 @@
+.page {
+  position: relative;
+  background: #000;
+  color: #fff;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+/* Full-screen box for the hero; the headline uses .heading from app/interior.module.css. */
+.hero { position: relative; min-height: 100svh; }
+
+/* Discipline filters: same small monospace treatment as the Experience 01–04 row; sticky under the main menu. */
+.filters {
+  position: sticky;
+  top: calc(clamp(29px, 4.3vh, 58px) + clamp(14px, 1.53vw, 28px) + 22px);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px clamp(22px, 3vw, 56px);
+  margin: clamp(28px, 4vw, 72px) 5.8% 0 4.4%;
+  border-top: 1px solid #454545;
+  background: #000;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(11px, 0.85vw, 15px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+.filters button {
+  position: relative;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  color: #a3a3a3;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+.filters sup { margin-left: 4px; font-size: 0.75em; vertical-align: super; color: #5c5c5c; }
+.filters button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.filters button:hover, .filters button[aria-pressed="true"] { color: #fff; }
+.filters button:hover::after, .filters button[aria-pressed="true"]::after { transform: scaleX(1); transform-origin: left center; }
+.filters button:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+
+/* Regular grid: equal 16:9 tiles, 4 per row (3 on tablets, 2 on phones), on the content margins. */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: clamp(24px, 3vw, 48px) 5.8% 0 4.4%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 28px);
+}
+.item[hidden] { display: none; }
+/* Tiles fade in when a filter brings them back. */
+.item { animation: tile-in 450ms ease both; }
+@keyframes tile-in { from { opacity: 0; } to { opacity: 1; } }
+
+.tile { position: relative; display: block; margin: 0; }
+.link { display: block; color: inherit; text-decoration: none; }
+.link:focus-visible, .tile:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.placeholder { position: absolute; inset: 0; }
+.image { object-fit: cover; transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+video.image { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* Number, title and label over the image: hidden until hover or keyboard focus. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(10px, 1vw, 16px) clamp(12px, 1.1vw, 18px);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.25) 100%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.number, .meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.number { color: #cfcfcf; }
+.text { display: grid; gap: 4px; }
+.title { font-size: clamp(14px, 1.15vw, 18px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; color: #fff; }
+.meta { color: #c4c4c4; line-height: 1.4; }
+
+.tile:hover .overlay,
+.tile:focus-visible .overlay,
+.link:focus-visible .overlay { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover .image { transform: scale(1.03); }
+}
+/* Touch screens have no hover: keep the text visible at the bottom of every tile. */
+@media (hover: none) {
+  .overlay { opacity: 1; justify-content: flex-end; padding: 0; background: none; }
+  .number { display: none; }
+  /* A solid translucent band keeps the text readable over bright previews. */
+  .text { gap: 2px; padding: 7px 10px 8px; background: rgba(0, 0, 0, 0.72); }
+  .meta { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+}
+
+.footer { padding: 14vw 2% 4vw; text-align: right; font-size: clamp(10px, .8vw, 14px); color: #ccc; }
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .filters { top: 74px; margin: 32px 6% 0; gap: 0 20px; font-size: 11px; }
+  .filters button { padding-block: 13px; }
+  .filters button::after { bottom: 7px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 24px 6% 0; }
+  .title { font-size: 12px; }
+  .meta { font-size: 9px; letter-spacing: 0.06em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item, .overlay, .image, .filters button, .filters button::after { animation: none; transition: none; }
+  .tile:hover .image { transform: none; }
+}

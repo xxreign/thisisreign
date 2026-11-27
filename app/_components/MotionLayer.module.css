@@ -1,0 +1,42 @@
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  display: none;
+}
+.cursor span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #fff;
+  transition: width 260ms cubic-bezier(0.2, 0.8, 0.2, 1), height 260ms cubic-bezier(0.2, 0.8, 0.2, 1), margin 260ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 200ms ease;
+}
+.cursor[data-mode] span { width: 56px; height: 56px; margin: -28px 0 0 -28px; }
+.cursor[data-mode="view"] span { width: 96px; height: 96px; margin: -48px 0 0 -48px; }
+.cursor[data-pressed] span { width: 8px; height: 8px; margin: -4px 0 0 -4px; }
+.cursor[data-mode][data-pressed] span { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+.cursor[data-hidden] span { opacity: 0; }
+
+:global(html.has-cursor) .cursor { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .progress { display: none; }
+}

@@ -45,7 +45,7 @@ export const work: ExperienceEntry[] = [
   },
   {
     title: "SPOTIFY, APPLE MUSIC", role: "Artist & Producer", date: "2019/11 -     NOW",
-    description: "Research assistant for Ph.D student’s topics of community and demand response by collecting state of the arts of existing smart devices, design and prototype a 3D printed physical smart transfer switch to help demand response program.",
+    description: "Verified Artist and Producer with uploaded soundtrack. But please do not listen to it.",
   },
 ];
 

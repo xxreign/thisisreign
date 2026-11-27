@@ -1,0 +1,79 @@
+/* Infinite photo gallery, matching the live Dusk ‘til Dawn site (values taken from its CSS). */
+.gallery {
+  --photo-height: clamp(760px, 54vw, 960px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: calc(var(--photo-height) - 64px);
+  padding: 0 0 48px;
+  margin-top: clamp(32px, 4vw, 72px);
+}
+.instructions {
+  margin: 0 5.8% 0 4.4%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: #8a8a8a;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 24px;
+  min-height: 0;
+  padding: 28px 5.79%;
+  overflow: auto hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y pinch-zoom;
+  cursor: grab;
+}
+.track::-webkit-scrollbar { display: none; }
+.track[data-dragging="true"] { cursor: grabbing; user-select: none; }
+.track:focus-visible { outline: 1px solid #fff; outline-offset: -8px; }
+
+.card {
+  position: relative;
+  flex: none;
+  height: clamp(220px, 24vw, 360px);
+  aspect-ratio: var(--photo-ratio);
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #eaeaea;
+  transform: scale(1);
+  transform-origin: 50%;
+}
+.card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 899px) {
+  .gallery { --photo-height: 560px; gap: 20px; padding: 0 0 36px; }
+  .instructions { margin: 0 6%; }
+  .track { gap: 16px; padding-inline: 24px; }
+  .card { height: min(220px, calc((100vw - 48px) / var(--photo-ratio) / 1.38)); border-radius: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transform: none !important; }
+}
