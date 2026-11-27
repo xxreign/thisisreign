@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "../project.module.css";
-import FilmPlayer from "./FilmPlayer";
+import FilmPlayer from "../FilmPlayer";
 
 export const metadata: Metadata = {
   title: "Blue in Stockholm | XXREIGN",
@@ -21,7 +21,7 @@ export default function BlueInStockholmPage() {
       {/* The film is the whole page: a content-width player under the nav. The h1 stays for screen readers and search. */}
       <header className={`${styles.videoHero} ${styles.content}`}>
         <h1 className={styles.visuallyHidden}>BLUE IN STOCKHOLM</h1>
-        <FilmPlayer src={`${dir}/film.mp4`} poster={`${dir}/poster.jpg`} label="Blue in Stockholm, a short film" />
+        <FilmPlayer src={`${dir}/film.mp4`} poster={`${dir}/preview.jpg`} label="Blue in Stockholm, a short film" caption={["Location: Stockholm, Sweden", "Music: BLUE by raph"]} />
       </header>
 
       <div id="overview" className={styles.content}>
@@ -36,7 +36,7 @@ export default function BlueInStockholmPage() {
 
         <nav className={styles.pager} aria-label="Project navigation">
           <Link href="/work">← WORK</Link>
-          <Link href="/work/dusk-til-dawn">NEXT PROJECT →</Link>
+          <Link href="/work/see-u-in-paris">NEXT PROJECT →</Link>
         </nav>
       </div>
 

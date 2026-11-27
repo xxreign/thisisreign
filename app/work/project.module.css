@@ -152,6 +152,8 @@
 /* Film player (Blue in Stockholm): content-width 16:9 video, caption and a FULLSCREEN button below. */
 .film { margin: 0; }
 .filmVideo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+/* Before the first play the poster (a slightly wider preview) fills the frame without black bars. */
+.filmVideo:not([data-started]) { object-fit: cover; }
 .filmBar { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
 .filmButton {
   margin-top: 10px;
