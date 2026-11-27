@@ -16,7 +16,8 @@ export default function WorkGrid() {
         <button type="button" aria-pressed={filter === null} onClick={() => setFilter(null)}>
           ALL<sup>{projects.length}</sup>
         </button>
-        {categories.map((c) => (
+        {/* Only disciplines that have at least one project get a button. */}
+        {categories.filter((c) => counts[c] > 0).map((c) => (
           <button type="button" key={c} aria-pressed={filter === c} onClick={() => setFilter(filter === c ? null : c)}>
             {c}<sup>{counts[c]}</sup>
           </button>
