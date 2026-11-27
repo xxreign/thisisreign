@@ -33,4 +33,5 @@ export const projects: Project[] = [
   { slug: "produce-r", title: "PRODUCE.R", category: "BRANDING", label: "CREATIVE DIRECTION, BRANDING, CAMPAIGN, PRODUCT DESIGN", year: "2024–NOW", image: "/work/produce-r/preview.jpg", url: "/work/produce-r" },
   { slug: "partial-wholes", title: "PARTIAL WHOLES", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2026", image: "/work/partial-wholes/p01.jpg", objectPosition: "50% 80%", url: "/work/partial-wholes" },
   { slug: "apartment-design", title: "APARTMENT DESIGN", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2023", image: "/work/apartment-design/street-view-1.jpg", url: "/work/apartment-design" },
+  { slug: "alphabet-collection", title: "ALPHABET COLLECTION", category: "GRAPHIC DESIGN", label: "GRAPHIC DESIGN, EXPERIMENTAL", year: "2026", image: "/work/alphabet-collection/preview.jpg", url: "/work/alphabet-collection" },
 ];
