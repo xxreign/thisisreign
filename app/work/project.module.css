@@ -102,6 +102,8 @@
   color: #d0d0d0;
 }
 .copy p { margin: 0; }
+/* A slightly smaller About text (Apartment Design). */
+.copySmall { font-size: clamp(15px, 1.2vw, 20px); }
 .details {
   margin: 0;
   padding-top: 18px;
@@ -148,6 +150,12 @@
 }
 .soundToggle:hover { background: rgba(0, 0, 0, 0.8); border-color: #fff; }
 .soundToggle:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+
+/* One 3:2 image on the left and a 2x2 grid of 3:2 images on the right, both exactly the same height.
+   With gap g: left = 50% - g/4, right = 50% - 3g/4 (the right side holds one extra gap inside it). */
+.pairGrid { --g: clamp(10px, 1.2vw, 20px); display: flex; align-items: flex-start; gap: var(--g); }
+.pairGridMain { flex: 0 0 calc(50% - var(--g) / 4); min-width: 0; }
+.pairGridSide { flex: 0 0 calc(50% - var(--g) * 3 / 4); min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--g); }
 
 /* Film player (Blue in Stockholm): content-width 16:9 video, caption and a FULLSCREEN button below. */
 .film { margin: 0; }
@@ -266,6 +274,8 @@
   .videoHero { padding-top: 84px; }
   .studioRow { max-width: none; margin-top: 24px; }
   .split { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .pairGrid { flex-direction: column; }
+  .pairGridMain, .pairGridSide { flex: none; width: 100%; }
   .wrapTwo { flex-direction: row; }
   /* The tiny Prod. logo (154 px wide) stays under about 2x when the logo row stacks. */
   .logoRow > .rowItem:first-child { max-width: 300px; }

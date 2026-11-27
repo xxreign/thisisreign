@@ -32,4 +32,5 @@ export const projects: Project[] = [
   { slug: "glitch-technology-festival", title: "GLITCH TECHNOLOGY FESTIVAL", category: "BRANDING", label: "VISUAL DIRECTION, BRANDING, PRODUCT DESIGN", year: "2026", image: "/work/glitch/p03-preview.jpg", url: "/work/glitch-technology-festival" },
   { slug: "produce-r", title: "PRODUCE.R", category: "BRANDING", label: "CREATIVE DIRECTION, BRANDING, CAMPAIGN, PRODUCT DESIGN", year: "2024–NOW", image: "/work/produce-r/preview.jpg", url: "/work/produce-r" },
   { slug: "partial-wholes", title: "PARTIAL WHOLES", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2026", image: "/work/partial-wholes/p01.jpg", objectPosition: "50% 80%", url: "/work/partial-wholes" },
+  { slug: "apartment-design", title: "APARTMENT DESIGN", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2023", image: "/work/apartment-design/street-view-1.jpg", url: "/work/apartment-design" },
 ];
