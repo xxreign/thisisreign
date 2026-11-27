@@ -35,4 +35,5 @@ export const projects: Project[] = [
   { slug: "apartment-design", title: "APARTMENT DESIGN", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2023", image: "/work/apartment-design/street-view-1.jpg", url: "/work/apartment-design" },
   { slug: "alphabet-collection", title: "ALPHABET COLLECTION", category: "GRAPHIC DESIGN", label: "GRAPHIC DESIGN, EXPERIMENTAL", year: "2026", image: "/work/alphabet-collection/preview.jpg", url: "/work/alphabet-collection" },
   { slug: "but-i-am-so-blue", title: "BUT I AM SO BLUE", category: "MOTION DESIGN", label: "MOTION DESIGN", year: "2025", image: "/work/but-i-am-so-blue/cover.jpg", url: "/work/but-i-am-so-blue" },
+  { slug: "pixel-tower", title: "PIXEL TOWER", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2024", image: "/work/pixel-tower/view-render.jpg", objectPosition: "50% 70%", url: "/work/pixel-tower" },
 ];

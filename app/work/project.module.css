@@ -102,6 +102,11 @@
   color: #d0d0d0;
 }
 .copy p { margin: 0; }
+/* A small heading inside a section (Pixel Tower: Program, Material, Floor Plans). */
+.subhead { margin: clamp(16px, 2vw, 36px) 0 0; font-size: clamp(16px, 1.3vw, 22px); font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+/* A centred block capped at 80% of the content width (full width on phones). */
+.narrow { width: 80%; margin-inline: auto; }
+
 /* A slightly smaller About text (Apartment Design). */
 .copySmall { font-size: clamp(15px, 1.2vw, 20px); }
 .details {
@@ -276,6 +281,7 @@
   .studioRow { max-width: none; margin-top: 24px; }
   .split { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
   .pairGrid { flex-direction: column; }
+  .narrow { width: 100%; }
   .pairGridMain, .pairGridSide { flex: none; width: 100%; }
   .wrapTwo { flex-direction: row; }
   /* The tiny Prod. logo (154 px wide) stays under about 2x when the logo row stacks. */
