@@ -89,7 +89,7 @@ export default function CatskillMuseumPage() {
 
         <nav className={styles.pager} aria-label="Project navigation">
           <Link href="/work">← WORK</Link>
-          <Link href="/work/dusk-til-dawn">NEXT PROJECT →</Link>
+          <Link href="/work/psa-suicide-prevention">NEXT PROJECT →</Link>
         </nav>
       </div>
 

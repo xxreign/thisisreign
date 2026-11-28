@@ -37,4 +37,5 @@ export const projects: Project[] = [
   { slug: "but-i-am-so-blue", title: "BUT I AM SO BLUE", category: "MOTION DESIGN", label: "MOTION DESIGN", year: "2025", image: "/work/but-i-am-so-blue/cover.jpg", url: "/work/but-i-am-so-blue" },
   { slug: "pixel-tower", title: "PIXEL TOWER", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2024", image: "/work/pixel-tower/view-render.jpg", objectPosition: "50% 70%", url: "/work/pixel-tower" },
   { slug: "catskill-museum", title: "CATSKILL MUSEUM", category: "ARCHITECTURE", label: "ARCHITECTURE DESIGN", year: "2022", image: "/work/catskill-museum/interior-1.jpg", url: "/work/catskill-museum" },
+  { slug: "psa-suicide-prevention", title: "PSA SUICIDE PREVENTION", category: "MOTION DESIGN", label: "MOTION DESIGN", year: "2025", image: "/work/psa-suicide-prevention/cover.jpg", url: "/work/psa-suicide-prevention" },
 ];
